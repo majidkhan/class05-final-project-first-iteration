@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './button'
-import './welcome'
+import "./button";
+import "./welcome";
+import "./mapcomponent";
 import './calendar'

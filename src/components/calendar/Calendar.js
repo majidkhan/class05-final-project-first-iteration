@@ -1,12 +1,15 @@
 import React from "react";
 import dateFns from "date-fns";
+import '../../App.css';
 
 class Calendar extends React.Component {
-    state = {
-        currentMonth: new Date(),
-        selectedDate: new Date()
-    };
-
+    constructor(props){
+        super(props);
+        this.state = {
+                    currentMonth: new Date(),
+                    selectedDate: new Date()
+                    };
+        }
     renderHeader() {
         const dateFormat = "MMMM YYYY";
 
@@ -28,12 +31,12 @@ class Calendar extends React.Component {
     }
 
     renderDays() {
-        const dateFormat = "dddd";
+        const dateFormat = "ddd";
         const days = [];
 
         let startDate = dateFns.startOfWeek(this.state.currentMonth);
-
-        for (let i = 0; i < 7; i++) {
+        // start i from 1 so that 1 day is added to startdate because everytime startofWeek function gives sunday
+        for (let i = 1; i < 8; i++) {
             days.push(
                 <div className="col col-center" key={i}>
                     {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
@@ -48,20 +51,26 @@ class Calendar extends React.Component {
         const { currentMonth, selectedDate } = this.state;
         const monthStart = dateFns.startOfMonth(currentMonth);
         const monthEnd = dateFns.endOfMonth(monthStart);
-        const startDate = dateFns.startOfWeek(monthStart);
+        const startDate = dateFns.startOfWeek(monthStart); //by deafult start date is sunday, next step add one more day to it
+        const startDate2 = dateFns.addDays(startDate, 1); //added one more day to it
+       
         const endDate = dateFns.endOfWeek(monthEnd);
+        const endDate2 = dateFns.endOfWeek(endDate);
+
+        console.log(startDate, startDate2, endDate, endDate2);
+
 
         const dateFormat = "D";
         const rows = [];
 
         let days = [];
-        let day = startDate;
-        let formattedDate = "";
+        let day = startDate2;
+        let formattedDate = ""; 
 
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
                 formattedDate = dateFns.format(day, dateFormat);
-                const cloneDay = day;
+                 const cloneDay = day;
                 days.push(
                     <div
                         className={`col cell ${
@@ -74,6 +83,7 @@ class Calendar extends React.Component {
                     >
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
+                        <span className="event-one">{this.findEvents(formattedDate)}</span>
                     </div>
                 );
                 day = dateFns.addDays(day, 1);
@@ -87,7 +97,12 @@ class Calendar extends React.Component {
         }
         return <div className="body">{rows}</div>;
     }
-
+    findEvents(date){
+        if(this.props.events && this.props.events[0].dates.includes(Number(date))){
+          return this.props.events[0].name;
+        }else
+        return "";
+      }
     onDateClick = day => {
         this.setState({
             selectedDate: day

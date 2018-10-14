@@ -263,3 +263,15 @@ main {
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
+
+.calendar .body .cell .event-one {
+  position: absolute;
+  font-size: 82.5%;
+  line-height: 1;
+  bottom: .50em;
+  right: .75em;
+  font-weight: 700;
+  background:rgb(126, 186, 232);
+  width: 80%;
+  color:white;
+ }

@@ -1,6 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
-import '../../App.css';
+import "../../App.css";
 
 class Calendar extends React.Component {
     constructor(props){

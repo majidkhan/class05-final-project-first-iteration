@@ -8,6 +8,9 @@ import { Button } from '@storybook/react/demo';
 
 storiesOf('Button', module)
   .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
+  .add("with text 2", () => (
+    <Button onClick={action("clicked")}>Search Button</Button>
+  ))
   .add('with some emoji', () => (
     <Button onClick={action('clicked')}>
       <span role="img" aria-label="so cool">

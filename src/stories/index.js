@@ -15,7 +15,7 @@ storiesOf("Button", module)
     <Button onClick={action("clicked")}>Hello Button</Button>
   ))
   .add("with text 2", () => (
-    <Button onClick={action("clicked")}>Search</Button>
+    <Button onClick={action("clicked")}>Search Button</Button>
   ))
   .add("with some emoji", () => (
     <Button onClick={action("clicked")}>

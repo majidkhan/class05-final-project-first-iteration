@@ -1,4 +1,4 @@
-
+import { storiesOf } from '@storybook/react';
 import "./button";
 import "./welcome";
 import "./mapcomponent";
